@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #f4f4f9;
+        }
+        #numero {
+            font-size: 80px;
+            margin: 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <H1>Contador de clicks</H1>
+    <div id="numero">0</div>
+    <div id="som"></div>
+
+    <button onclick="alterarContador(-1)">Diminuir</button>
+    <button onclick="ZerarContador()">Zerar</button>
+    <button onclick="alterarContador(1)">Aumentar</button>
+    <button id="botao-tocar">Tocar Som</button>
+
+    <audio id="meu-audio">
+    <source src="perfect-fart_Qosxm1J.mp3" type="audio/mpeg">
+  Seu navegador não suporta áudio.
+    </audio>
+
+    <script>
+let contador = 0
+
+const elementoNumero = document.getElementById('numero');
+const audio = document.getElementById('meu-audio');
+const botao = document.getElementById('botao-tocar'); 
+
+botao.addEventListener('click', function() {
+    audio.play();
+});
+
+function TocarSom() {
+    audio.currentTime = 0; 
+    audio.play();
+}
+
+function alterarContador(valor){
+contador = contador + (valor);
+atualizarTela();
+TocarSom();
+}
+
+function ZerarContador(){
+contador = 0;
+atualizarTela();
+TocarSom();
+}
+
+function atualizarTela(){
+    elementoNumero.textContent = contador;
+
+     if (contador > 0){
+        elementoNumero.style.color = "green";
+    } 
+    else if (contador < 0){
+        elementoNumero.style.color = "red";
+    } 
+    else{
+        elementoNumero.style.color = "black";
+    } 
+}
+
+
+    </script>
+
+</body>
+</html>
